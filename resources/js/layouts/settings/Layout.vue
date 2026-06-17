@@ -13,7 +13,8 @@ import { index as indexPendidikan } from '@/routes/pendidikan';
 import { index as indexPengalaman } from '@/routes/pengalaman';
 import { index as indexPortofolio } from '@/routes/portofolio';
 import { index as indexKontak } from '@/routes/kontak';
-import { User, Shield, Palette, FileText, GraduationCap, Briefcase, FolderGit2, Share2 } from '@lucide/vue';
+import { index as indexSkills } from '@/routes/skills';
+import { User, Shield, Palette, FileText, GraduationCap, Briefcase, FolderGit2, Share2, Code2 } from '@lucide/vue';
 import type { NavItem } from '@/types';
 
 const sidebarNavItems: NavItem[] = [
@@ -56,6 +57,11 @@ const sidebarNavItems: NavItem[] = [
         title: 'Tautan Kontak',
         href: indexKontak(),
         icon: Share2,
+    },
+    {
+        title: 'Skills',
+        href: indexSkills(),
+        icon: Code2,
     },
 ];
 

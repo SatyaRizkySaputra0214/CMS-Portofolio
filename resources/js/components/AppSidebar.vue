@@ -6,7 +6,8 @@ import {
     GraduationCap,
     Briefcase,
     FolderGit2,
-    Share2
+    Share2,
+    Code2
 } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -27,6 +28,7 @@ import { index as indexPendidikan } from '@/routes/pendidikan';
 import { index as indexPengalaman } from '@/routes/pengalaman';
 import { index as indexPortofolio } from '@/routes/portofolio';
 import { index as indexKontak } from '@/routes/kontak';
+import { index as indexSkills } from '@/routes/skills';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -59,6 +61,11 @@ const mainNavItems: NavItem[] = [
         title: 'Tautan Kontak',
         href: indexKontak(),
         icon: Share2,
+    },
+    {
+        title: 'Skills',
+        href: indexSkills(),
+        icon: Code2,
     },
 ];
 </script>

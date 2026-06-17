@@ -7,6 +7,7 @@ use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PengalamanController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\SkillController;
 
 Route::get('/', [PublicController::class, 'index'])->name('home');
 
@@ -40,6 +41,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('kontak', [KontakController::class, 'store'])->name('kontak.store');
     Route::put('kontak/{kontak}', [KontakController::class, 'update'])->name('kontak.update');
     Route::delete('kontak/{kontak}', [KontakController::class, 'destroy'])->name('kontak.destroy');
+
+    // Skills CRUD
+    Route::get('settings/skills', [SkillController::class, 'index'])->name('skills.index');
+    Route::post('skills', [SkillController::class, 'store'])->name('skills.store');
+    Route::put('skills/{skill}', [SkillController::class, 'update'])->name('skills.update');
+    Route::delete('skills/{skill}', [SkillController::class, 'destroy'])->name('skills.destroy');
 });
 
 require __DIR__.'/settings.php';

@@ -7,6 +7,7 @@ use App\Models\Kontak;
 use App\Models\Pendidikan;
 use App\Models\Pengalaman;
 use App\Models\Portofolio;
+use App\Models\Skill;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -33,6 +34,7 @@ class PublicController extends Controller
         $pengalaman = Pengalaman::orderBy('tanggal_mulai', 'desc')->get();
         $portofolio = Portofolio::orderBy('dibuat_pada', 'desc')->get();
         $kontak = Kontak::all();
+        $skills = Skill::where('status', true)->orderBy('urutan', 'asc')->orderBy('nama', 'asc')->get();
 
         return Inertia::render('Welcome', [
             'identitas' => $identitas,
@@ -40,6 +42,7 @@ class PublicController extends Controller
             'pengalaman' => $pengalaman,
             'portofolio' => $portofolio,
             'kontak' => $kontak,
+            'skills' => $skills,
         ]);
     }
 }

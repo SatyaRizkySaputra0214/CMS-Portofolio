@@ -15,7 +15,9 @@ import {
     Moon,
     Quote,
     Target,
-    Star
+    Star,
+    Code2,
+    Zap,
 } from '@lucide/vue';
 import { useAppearance } from '@/composables/useAppearance';
 import {
@@ -73,16 +75,27 @@ interface KontakItem {
     ikon: string | null;
 }
 
+interface SkillItem {
+    id: number;
+    nama: string;
+    ikon: string | null;
+    gambar: string | null;
+    urutan: number;
+    status: boolean;
+}
+
 const props = defineProps<{
     identitas: Identitas;
     pendidikan: PendidikanItem[];
     pengalaman: PengalamanItem[];
     portofolio: PortofolioItem[];
     kontak: KontakItem[];
+    skills: SkillItem[];
 }>();
 
 const selectedProject = ref<PortofolioItem | null>(null);
 const isDetailOpen = ref(false);
+const isSkillsPaused = ref(false);
 
 const openDetail = (project: PortofolioItem) => {
     selectedProject.value = project;
@@ -352,6 +365,56 @@ onUnmounted(() => {
                                 Membangun aplikasi digital bukan hanya sekadar menulis kode, tetapi juga tentang memecahkan masalah nyata dan memberikan dampak positif serta kemudahan bagi penggunanya secara estetis dan fungsional.
                             </p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SKILLS SECTION ==================== -->
+        <section v-if="skills.length > 0" id="skills" class="relative py-20 sm:py-28 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-50/20 via-transparent to-teal-50/20 dark:from-blue-950/5 dark:via-transparent dark:to-teal-950/5"></div>
+
+            <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <!-- Section header -->
+                <div class="mx-auto max-w-2xl space-y-4 text-center section-reveal">
+                    <div class="inline-flex items-center gap-2 rounded-full bg-teal-100/80 px-3 py-1 text-xs font-semibold text-teal-700 dark:bg-teal-900/30 dark:text-teal-400">
+                        <Zap class="h-3 w-3" />
+                        <span>Keahlian</span>
+                    </div>
+                    <h2 class="font-heading text-3xl font-bold tracking-tight text-[#0F172A] dark:text-white sm:text-4xl">Teknologi yang Saya Kuasai</h2>
+                    <p class="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">Berbagai teknologi dan alat yang saya gunakan dalam pengembangan proyek.</p>
+                </div>
+            </div>
+
+            <!-- Infinite Slider -->
+            <div class="mt-14 skills-slider" :class="{ 'skills-paused': isSkillsPaused }" @mouseenter="isSkillsPaused = true" @mouseleave="isSkillsPaused = false">
+                <div class="skills-track">
+                    <div v-for="(skill, index) in skills" :key="'a-'+skill.id" class="skills-card group" :style="{ animationDelay: `${index * 0.05}s` }">
+                        <div class="skills-icon-wrapper">
+                            <img
+                                v-if="skill.gambar"
+                                :src="`/storage/${skill.gambar}`"
+                                :alt="skill.nama"
+                                class="skills-icon"
+                                loading="lazy"
+                            />
+                            <Code2 v-else class="skills-icon text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <div class="skills-tooltip">{{ skill.nama }}</div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div v-for="(skill, index) in skills" :key="'b-'+skill.id" class="skills-card group" :style="{ animationDelay: `${index * 0.05}s` }">
+                        <div class="skills-icon-wrapper">
+                            <img
+                                v-if="skill.gambar"
+                                :src="`/storage/${skill.gambar}`"
+                                :alt="skill.nama"
+                                class="skills-icon"
+                                loading="lazy"
+                            />
+                            <Code2 v-else class="skills-icon text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <div class="skills-tooltip">{{ skill.nama }}</div>
                     </div>
                 </div>
             </div>
