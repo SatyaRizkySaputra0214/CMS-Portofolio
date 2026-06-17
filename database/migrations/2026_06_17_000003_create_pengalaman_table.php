@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('pengalaman', function (Blueprint $table) {
+            $table->id();
+            $table->enum('kategori', ['Organisasi', 'Magang', 'Kerja']);
+            $table->string('posisi', 100);
+            $table->string('nama_instansi', 150);
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai')->nullable();
+            $table->text('deskripsi')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('pengalaman');
+    }
+};
