@@ -258,16 +258,6 @@ php artisan route:cache
 php artisan view:cache
 ```
 
-### Akun Admin (Default Seeder)
-
-| Field | Value |
-|-------|-------|
-| **Username** | `admin` |
-| **Email** | `admin@example.com` |
-| **Password** | `satya_2004` |
-
-> Ubah password segera setelah login pertama.
-
 ### Menjalankan Quality Checks
 
 ```bash
