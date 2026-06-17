@@ -334,12 +334,6 @@ composer test          # Jalankan test (PHPUnit)
 | **Pengunjung** | Siapa saja yang membuka URL website | Melihat halaman publik (/) |
 | **Admin** | Pemilik portofolio (terautentikasi) | Dashboard + seluruh fitur CRUD + pengaturan |
 
-### Cara Login Admin
-
-1. Buka **http://localhost:8000/dashboard** (akan redirect ke halaman login jika belum login)
-2. Masukkan **Username** (`admin`) atau **Email** (`admin@example.com`) dan **Password** (`satya_2004`)
-3. Klik **Sign in**
-4. Setelah login, Anda akan masuk ke **Dashboard Admin**
 
 ### Mengakses Fitur CMS
 
