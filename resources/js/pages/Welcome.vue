@@ -188,19 +188,6 @@ onUnmounted(() => {
             <div
                 class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8"
             >
-                <div class="flex items-center gap-3">
-                    <div class="relative">
-                        <span
-                            class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20"
-                        >
-                            P
-                        </span>
-                        <div
-                            class="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-blue-600/40 to-teal-500/40 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100"
-                        ></div>
-                    </div>
-                </div>
-
                 <div class="flex items-center gap-2 sm:gap-4">
                     <nav
                         class="hidden items-center gap-8 text-sm font-medium md:flex"
