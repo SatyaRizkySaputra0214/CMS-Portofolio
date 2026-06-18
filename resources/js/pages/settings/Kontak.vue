@@ -2,7 +2,11 @@
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { index as indexKontak } from '@/routes/kontak';
-import { store as storeKontak, update as updateKontak, destroy as destroyKontak } from '@/routes/kontak';
+import {
+    store as storeKontak,
+    update as updateKontak,
+    destroy as destroyKontak,
+} from '@/routes/kontak';
 import Heading from '@/components/Heading.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -112,20 +116,29 @@ const deleteItem = (id: number) => {
     <h1 class="sr-only">Tautan Kontak</h1>
 
     <div class="flex flex-col space-y-6 p-6 sm:p-8">
-        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div
+            class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center"
+        >
             <Heading
                 variant="small"
                 title="Tautan Kontak"
                 description="Kelola media sosial dan tautan hubungi saya yang akan ditampilkan di footer publik."
             />
-            <Button @click="openAddDialog" class="w-fit shrink-0">Tambah Kontak</Button>
+            <Button @click="openAddDialog" class="w-fit shrink-0"
+                >Tambah Kontak</Button
+            >
         </div>
 
         <!-- List Kontak -->
         <div class="space-y-4">
-            <div v-if="kontak.length === 0" class="rounded-xl border-2 border-dashed border-neutral-200 dark:border-neutral-700 p-10 sm:p-12 text-center text-muted-foreground">
+            <div
+                v-if="kontak.length === 0"
+                class="rounded-xl border-2 border-dashed border-neutral-200 p-10 text-center text-muted-foreground sm:p-12 dark:border-neutral-700"
+            >
                 <div class="flex flex-col items-center gap-2">
-                    <Share2 class="h-8 w-8 text-neutral-300 dark:text-neutral-600" />
+                    <Share2
+                        class="h-8 w-8 text-neutral-300 dark:text-neutral-600"
+                    />
                     <p>Belum ada data kontak. Silakan tambahkan data baru.</p>
                 </div>
             </div>
@@ -133,20 +146,39 @@ const deleteItem = (id: number) => {
             <div
                 v-for="item in kontak"
                 :key="item.id"
-                class="flex flex-col justify-between gap-4 rounded-xl border p-5 sm:p-6 shadow-sm transition-all hover:bg-neutral-50/50 dark:hover:bg-neutral-900/50 hover:shadow-md md:flex-row md:items-center"
+                class="flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-sm transition-all hover:bg-neutral-50/50 hover:shadow-md sm:p-6 md:flex-row md:items-center dark:hover:bg-neutral-900/50"
             >
                 <div class="space-y-1.5">
                     <div class="flex items-center gap-2">
-                        <h3 class="text-base font-semibold">{{ item.platform }}</h3>
-                        <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium dark:bg-neutral-800 text-muted-foreground">
+                        <h3 class="text-base font-semibold">
+                            {{ item.platform }}
+                        </h3>
+                        <span
+                            class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-muted-foreground dark:bg-neutral-800"
+                        >
                             {{ item.ikon || 'Default' }}
                         </span>
                     </div>
-                    <a :href="item.url" target="_blank" class="text-sm font-medium text-blue-600 hover:text-blue-500 transition-colors break-all">{{ item.url }}</a>
+                    <a
+                        :href="item.url"
+                        target="_blank"
+                        class="text-sm font-medium break-all text-blue-600 transition-colors hover:text-blue-500"
+                        >{{ item.url }}</a
+                    >
                 </div>
-                <div class="flex items-center gap-2 shrink-0">
-                    <Button variant="outline" size="sm" @click="openEditDialog(item)">Edit</Button>
-                    <Button variant="destructive" size="sm" @click="deleteItem(item.id)">Hapus</Button>
+                <div class="flex shrink-0 items-center gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        @click="openEditDialog(item)"
+                        >Edit</Button
+                    >
+                    <Button
+                        variant="destructive"
+                        size="sm"
+                        @click="deleteItem(item.id)"
+                        >Hapus</Button
+                    >
                 </div>
             </div>
         </div>
@@ -156,9 +188,13 @@ const deleteItem = (id: number) => {
             <DialogContent class="sm:max-w-[450px]">
                 <form @submit.prevent="submitForm" class="space-y-5">
                     <DialogHeader>
-                        <DialogTitle>{{ isEditing ? 'Edit Kontak' : 'Tambah Kontak' }}</DialogTitle>
+                        <DialogTitle>{{
+                            isEditing ? 'Edit Kontak' : 'Tambah Kontak'
+                        }}</DialogTitle>
                         <DialogDescription>
-                            Isi form di bawah ini untuk {{ isEditing ? 'memperbarui' : 'menambahkan' }} tautan kontak Anda.
+                            Isi form di bawah ini untuk
+                            {{ isEditing ? 'memperbarui' : 'menambahkan' }}
+                            tautan kontak Anda.
                         </DialogDescription>
                     </DialogHeader>
 
@@ -170,14 +206,16 @@ const deleteItem = (id: number) => {
                                 v-model="form.platform"
                                 @change="handlePlatformChange"
                                 required
-                                class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border-ring disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30"
+                                class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30"
                             >
                                 <option value="LinkedIn">LinkedIn</option>
                                 <option value="GitHub">GitHub</option>
                                 <option value="Email">Email</option>
                                 <option value="Twitter">Twitter / X</option>
                                 <option value="Instagram">Instagram</option>
-                                <option value="Website">Personal Website / Lainnya</option>
+                                <option value="Website">
+                                    Personal Website / Lainnya
+                                </option>
                             </select>
                             <InputError :message="form.errors.platform" />
                         </div>
@@ -205,8 +243,15 @@ const deleteItem = (id: number) => {
                     </div>
 
                     <DialogFooter class="pt-2">
-                        <Button type="button" variant="outline" @click="isDialogOpen = false">Batal</Button>
-                        <Button type="submit" :disabled="form.processing">Simpan</Button>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            @click="isDialogOpen = false"
+                            >Batal</Button
+                        >
+                        <Button type="submit" :disabled="form.processing"
+                            >Simpan</Button
+                        >
                     </DialogFooter>
                 </form>
             </DialogContent>

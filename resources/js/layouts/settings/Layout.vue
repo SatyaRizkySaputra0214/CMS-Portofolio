@@ -14,7 +14,17 @@ import { index as indexPengalaman } from '@/routes/pengalaman';
 import { index as indexPortofolio } from '@/routes/portofolio';
 import { index as indexKontak } from '@/routes/kontak';
 import { index as indexSkills } from '@/routes/skills';
-import { User, Shield, Palette, FileText, GraduationCap, Briefcase, FolderGit2, Share2, Code2 } from '@lucide/vue';
+import {
+    User,
+    Shield,
+    Palette,
+    FileText,
+    GraduationCap,
+    Briefcase,
+    FolderGit2,
+    Share2,
+    Code2,
+} from '@lucide/vue';
 import type { NavItem } from '@/types';
 
 const sidebarNavItems: NavItem[] = [
@@ -86,14 +96,21 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
                         :key="toUrl(item.href)"
                         variant="ghost"
                         :class="[
-                            'w-full justify-start text-left gap-2.5 px-3 py-2 h-auto text-sm font-normal',
-                            { 'bg-muted font-medium text-foreground': isCurrentOrParentUrl(item.href),
-                              'text-muted-foreground hover:text-foreground': !isCurrentOrParentUrl(item.href) },
+                            'h-auto w-full justify-start gap-2.5 px-3 py-2 text-left text-sm font-normal',
+                            {
+                                'bg-muted font-medium text-foreground':
+                                    isCurrentOrParentUrl(item.href),
+                                'text-muted-foreground hover:text-foreground':
+                                    !isCurrentOrParentUrl(item.href),
+                            },
                         ]"
                         as-child
                     >
                         <Link :href="item.href">
-                            <component :is="item.icon" class="h-4 w-4 shrink-0" />
+                            <component
+                                :is="item.icon"
+                                class="h-4 w-4 shrink-0"
+                            />
                             <span>{{ item.title }}</span>
                         </Link>
                     </Button>
@@ -102,7 +119,7 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
 
             <Separator class="my-6 lg:hidden" />
 
-            <div class="flex-1 min-w-0 md:max-w-2xl">
+            <div class="min-w-0 flex-1 md:max-w-2xl">
                 <section class="max-w-xl space-y-12">
                     <slot />
                 </section>

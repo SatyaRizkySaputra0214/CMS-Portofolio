@@ -2,7 +2,11 @@
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import { index as indexSkills } from '@/routes/skills';
-import { store as storeSkills, update as updateSkills, destroy as destroySkills } from '@/routes/skills';
+import {
+    store as storeSkills,
+    update as updateSkills,
+    destroy as destroySkills,
+} from '@/routes/skills';
 import Heading from '@/components/Heading.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -136,20 +140,29 @@ const toggleStatus = (item: SkillItem) => {
     <h1 class="sr-only">Skills</h1>
 
     <div class="flex flex-col space-y-6 p-6 sm:p-8">
-        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div
+            class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center"
+        >
             <Heading
                 variant="small"
                 title="Skills"
                 description="Kelola daftar keahlian dan teknologi yang akan ditampilkan pada halaman portofolio."
             />
-            <Button @click="openAddDialog" class="w-fit shrink-0">Tambah Skill</Button>
+            <Button @click="openAddDialog" class="w-fit shrink-0"
+                >Tambah Skill</Button
+            >
         </div>
 
         <!-- List Skills -->
         <div class="space-y-4">
-            <div v-if="skills.length === 0" class="rounded-xl border-2 border-dashed border-neutral-200 dark:border-neutral-700 p-10 sm:p-12 text-center text-muted-foreground">
+            <div
+                v-if="skills.length === 0"
+                class="rounded-xl border-2 border-dashed border-neutral-200 p-10 text-center text-muted-foreground sm:p-12 dark:border-neutral-700"
+            >
                 <div class="flex flex-col items-center gap-2">
-                    <Code2 class="h-8 w-8 text-neutral-300 dark:text-neutral-600" />
+                    <Code2
+                        class="h-8 w-8 text-neutral-300 dark:text-neutral-600"
+                    />
                     <p>Belum ada data skill. Silakan tambahkan data baru.</p>
                 </div>
             </div>
@@ -157,30 +170,49 @@ const toggleStatus = (item: SkillItem) => {
             <div
                 v-for="item in skills"
                 :key="item.id"
-                class="flex flex-col justify-between gap-4 rounded-xl border p-5 sm:p-6 shadow-sm transition-all hover:bg-neutral-50/50 dark:hover:bg-neutral-900/50 hover:shadow-md md:flex-row md:items-center"
+                class="flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-sm transition-all hover:bg-neutral-50/50 hover:shadow-md sm:p-6 md:flex-row md:items-center dark:hover:bg-neutral-900/50"
             >
                 <div class="flex items-center gap-4">
-                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 overflow-hidden dark:bg-blue-900/20">
+                    <div
+                        class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-blue-50 dark:bg-blue-900/20"
+                    >
                         <img
                             v-if="item.gambar"
                             :src="`/storage/${item.gambar}`"
                             :alt="item.nama"
                             class="h-full w-full object-contain p-1"
                         />
-                        <Code2 v-else class="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <Code2
+                            v-else
+                            class="h-5 w-5 text-blue-600 dark:text-blue-400"
+                        />
                     </div>
                     <div class="space-y-1">
                         <div class="flex items-center gap-2">
-                            <h3 class="text-base font-semibold">{{ item.nama }}</h3>
+                            <h3 class="text-base font-semibold">
+                                {{ item.nama }}
+                            </h3>
                             <span
                                 @click="toggleStatus(item)"
-                                class="cursor-pointer inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium border transition-all hover:scale-105"
-                                :class="item.status
-                                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800'
-                                    : 'bg-neutral-100 text-neutral-500 border-neutral-200 dark:bg-neutral-800 dark:text-neutral-500 dark:border-neutral-700'"
+                                class="inline-flex cursor-pointer items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px] font-medium transition-all hover:scale-105"
+                                :class="
+                                    item.status
+                                        ? 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-900/20 dark:text-emerald-400'
+                                        : 'border-neutral-200 bg-neutral-100 text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-500'
+                                "
                             >
-                                <span class="relative flex h-1.5 w-1.5" :class="item.status ? 'bg-emerald-500' : 'bg-neutral-400'">
-                                    <span v-if="item.status" class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                                <span
+                                    class="relative flex h-1.5 w-1.5"
+                                    :class="
+                                        item.status
+                                            ? 'bg-emerald-500'
+                                            : 'bg-neutral-400'
+                                    "
+                                >
+                                    <span
+                                        v-if="item.status"
+                                        class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"
+                                    ></span>
                                 </span>
                                 {{ item.status ? 'Aktif' : 'Nonaktif' }}
                             </span>
@@ -190,9 +222,19 @@ const toggleStatus = (item: SkillItem) => {
                         </p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2 shrink-0">
-                    <Button variant="outline" size="sm" @click="openEditDialog(item)">Edit</Button>
-                    <Button variant="destructive" size="sm" @click="deleteItem(item.id)">Hapus</Button>
+                <div class="flex shrink-0 items-center gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        @click="openEditDialog(item)"
+                        >Edit</Button
+                    >
+                    <Button
+                        variant="destructive"
+                        size="sm"
+                        @click="deleteItem(item.id)"
+                        >Hapus</Button
+                    >
                 </div>
             </div>
         </div>
@@ -202,9 +244,13 @@ const toggleStatus = (item: SkillItem) => {
             <DialogContent class="sm:max-w-[500px]">
                 <form @submit.prevent="submitForm" class="space-y-5">
                     <DialogHeader>
-                        <DialogTitle>{{ isEditing ? 'Edit Skill' : 'Tambah Skill' }}</DialogTitle>
+                        <DialogTitle>{{
+                            isEditing ? 'Edit Skill' : 'Tambah Skill'
+                        }}</DialogTitle>
                         <DialogDescription>
-                            Isi form di bawah ini untuk {{ isEditing ? 'memperbarui' : 'menambahkan' }} keahlian Anda.
+                            Isi form di bawah ini untuk
+                            {{ isEditing ? 'memperbarui' : 'menambahkan' }}
+                            keahlian Anda.
                         </DialogDescription>
                     </DialogHeader>
 
@@ -223,14 +269,19 @@ const toggleStatus = (item: SkillItem) => {
                         <div class="grid gap-2">
                             <Label for="gambar">Logo / Gambar Skill</Label>
                             <div class="flex items-center gap-3">
-                                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border bg-white dark:bg-neutral-900 overflow-hidden">
+                                <div
+                                    class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-white dark:bg-neutral-900"
+                                >
                                     <img
                                         v-if="imagePreviewUrl"
                                         :src="imagePreviewUrl"
                                         alt="Preview"
                                         class="h-full w-full object-contain p-1"
                                     />
-                                    <Code2 v-else class="h-6 w-6 text-neutral-300 dark:text-neutral-600" />
+                                    <Code2
+                                        v-else
+                                        class="h-6 w-6 text-neutral-300 dark:text-neutral-600"
+                                    />
                                 </div>
                                 <Input
                                     id="gambar"
@@ -240,7 +291,9 @@ const toggleStatus = (item: SkillItem) => {
                                     class="flex-1"
                                 />
                             </div>
-                            <p class="text-[11px] text-muted-foreground">Format: JPG, PNG, SVG, WebP. Maksimal 2MB.</p>
+                            <p class="text-[11px] text-muted-foreground">
+                                Format: JPG, PNG, SVG, WebP. Maksimal 2MB.
+                            </p>
                             <InputError :message="form.errors.gambar" />
                         </div>
 
@@ -254,26 +307,42 @@ const toggleStatus = (item: SkillItem) => {
                                 min="0"
                                 placeholder="0"
                             />
-                            <p class="text-[11px] text-muted-foreground">Semakin kecil angka, semakin awal posisi dalam slider.</p>
+                            <p class="text-[11px] text-muted-foreground">
+                                Semakin kecil angka, semakin awal posisi dalam
+                                slider.
+                            </p>
                             <InputError :message="form.errors.urutan" />
                         </div>
 
                         <div class="flex items-center gap-3">
-                            <label class="relative inline-flex cursor-pointer items-center">
+                            <label
+                                class="relative inline-flex cursor-pointer items-center"
+                            >
                                 <input
                                     type="checkbox"
                                     v-model="form.status"
                                     class="peer sr-only"
                                 />
-                                <div class="h-6 w-11 rounded-full border border-input bg-neutral-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-neutral-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-emerald-500 peer-checked:after:translate-x-full peer-checked:after:border-white dark:bg-neutral-700 dark:border-neutral-600 dark:after:bg-neutral-400"></div>
+                                <div
+                                    class="h-6 w-11 rounded-full border border-input bg-neutral-200 peer-checked:bg-emerald-500 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-neutral-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-neutral-600 dark:bg-neutral-700 dark:after:bg-neutral-400"
+                                ></div>
                             </label>
-                            <Label class="cursor-pointer select-none">{{ form.status ? 'Aktif' : 'Nonaktif' }}</Label>
+                            <Label class="cursor-pointer select-none">{{
+                                form.status ? 'Aktif' : 'Nonaktif'
+                            }}</Label>
                         </div>
                     </div>
 
                     <DialogFooter class="pt-2">
-                        <Button type="button" variant="outline" @click="isDialogOpen = false">Batal</Button>
-                        <Button type="submit" :disabled="form.processing">Simpan</Button>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            @click="isDialogOpen = false"
+                            >Batal</Button
+                        >
+                        <Button type="submit" :disabled="form.processing"
+                            >Simpan</Button
+                        >
                     </DialogFooter>
                 </form>
             </DialogContent>

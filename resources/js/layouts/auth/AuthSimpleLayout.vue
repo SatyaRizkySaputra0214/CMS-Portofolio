@@ -23,20 +23,22 @@ defineProps<{
                         <div
                             class="mb-1 flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm"
                         >
-                            <AppLogoIcon
-                                class="size-6 fill-current"
-                            />
+                            <AppLogoIcon class="size-6 fill-current" />
                         </div>
                         <span class="sr-only">{{ title }}</span>
                     </Link>
                     <div class="space-y-1.5 text-center">
-                        <h1 class="text-xl font-semibold tracking-tight">{{ title }}</h1>
-                        <p class="text-sm text-muted-foreground max-w-xs mx-auto">
+                        <h1 class="text-xl font-semibold tracking-tight">
+                            {{ title }}
+                        </h1>
+                        <p
+                            class="mx-auto max-w-xs text-sm text-muted-foreground"
+                        >
                             {{ description }}
                         </p>
                     </div>
                 </div>
-                <div class="bg-card border rounded-xl p-6 sm:p-8 shadow-sm">
+                <div class="rounded-xl border bg-card p-6 shadow-sm sm:p-8">
                     <slot />
                 </div>
             </div>

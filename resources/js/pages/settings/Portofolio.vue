@@ -2,7 +2,11 @@
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { index as indexPortofolio } from '@/routes/portofolio';
-import { store as storePortofolio, update as updatePortofolio, destroy as destroyPortofolio } from '@/routes/portofolio';
+import {
+    store as storePortofolio,
+    update as updatePortofolio,
+    destroy as destroyPortofolio,
+} from '@/routes/portofolio';
 import Heading from '@/components/Heading.vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -115,21 +119,33 @@ const deleteItem = (id: number) => {
     <h1 class="sr-only">Galeri Portofolio</h1>
 
     <div class="flex flex-col space-y-6 p-6 sm:p-8">
-        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div
+            class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center"
+        >
             <Heading
                 variant="small"
                 title="Galeri Portofolio"
                 description="Kelola proyek, aplikasi, atau karya yang ingin Anda tunjukkan di portofolio."
             />
-            <Button @click="openAddDialog" class="w-fit shrink-0">Tambah Proyek</Button>
+            <Button @click="openAddDialog" class="w-fit shrink-0"
+                >Tambah Proyek</Button
+            >
         </div>
 
         <!-- Grid Portofolio -->
         <div class="grid gap-5 sm:gap-6 md:grid-cols-2">
-            <div v-if="portofolio.length === 0" class="col-span-full rounded-xl border-2 border-dashed border-neutral-200 dark:border-neutral-700 p-10 sm:p-12 text-center text-muted-foreground">
+            <div
+                v-if="portofolio.length === 0"
+                class="col-span-full rounded-xl border-2 border-dashed border-neutral-200 p-10 text-center text-muted-foreground sm:p-12 dark:border-neutral-700"
+            >
                 <div class="flex flex-col items-center gap-2">
-                    <FolderGit2 class="h-8 w-8 text-neutral-300 dark:text-neutral-600" />
-                    <p>Belum ada data proyek portofolio. Silakan tambahkan proyek baru.</p>
+                    <FolderGit2
+                        class="h-8 w-8 text-neutral-300 dark:text-neutral-600"
+                    />
+                    <p>
+                        Belum ada data proyek portofolio. Silakan tambahkan
+                        proyek baru.
+                    </p>
                 </div>
             </div>
 
@@ -138,7 +154,9 @@ const deleteItem = (id: number) => {
                 :key="item.id"
                 class="flex flex-col overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md dark:bg-neutral-900/10"
             >
-                <div class="aspect-video w-full overflow-hidden border-b bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
+                <div
+                    class="flex aspect-video w-full items-center justify-center overflow-hidden border-b bg-neutral-100 dark:bg-neutral-800"
+                >
                     <img
                         v-if="item.thumbnail"
                         :src="`/storage/${item.thumbnail}`"
@@ -147,30 +165,56 @@ const deleteItem = (id: number) => {
                     />
                     <div v-else class="text-xs text-muted-foreground italic">
                         <div class="flex flex-col items-center gap-1">
-                            <FolderGit2 class="h-6 w-6 text-neutral-300 dark:text-neutral-600" />
+                            <FolderGit2
+                                class="h-6 w-6 text-neutral-300 dark:text-neutral-600"
+                            />
                             <span>Tidak ada gambar pratinjau</span>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-1 flex-col p-5 sm:p-6 space-y-3">
+                <div class="flex flex-1 flex-col space-y-3 p-5 sm:p-6">
                     <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold leading-tight line-clamp-1">{{ item.judul_proyek }}</h3>
-                        <p class="text-sm text-neutral-500 line-clamp-2 leading-relaxed">{{ item.deskripsi_singkat }}</p>
+                        <h3
+                            class="line-clamp-1 text-base leading-tight font-semibold"
+                        >
+                            {{ item.judul_proyek }}
+                        </h3>
+                        <p
+                            class="line-clamp-2 text-sm leading-relaxed text-neutral-500"
+                        >
+                            {{ item.deskripsi_singkat }}
+                        </p>
                     </div>
                     <div class="flex-1"></div>
-                    <div class="flex items-center justify-between pt-2 border-t border-neutral-100 dark:border-neutral-800">
+                    <div
+                        class="flex items-center justify-between border-t border-neutral-100 pt-2 dark:border-neutral-800"
+                    >
                         <a
                             v-if="item.link_eksternal"
                             :href="item.link_eksternal"
                             target="_blank"
-                            class="text-xs font-medium text-blue-600 hover:text-blue-500 transition-colors"
+                            class="text-xs font-medium text-blue-600 transition-colors hover:text-blue-500"
                         >
                             Tautan Demo/Repository
                         </a>
-                        <span v-else class="text-xs text-muted-foreground italic">Tidak ada tautan</span>
+                        <span
+                            v-else
+                            class="text-xs text-muted-foreground italic"
+                            >Tidak ada tautan</span
+                        >
                         <div class="flex items-center gap-1.5">
-                            <Button variant="outline" size="sm" @click="openEditDialog(item)">Edit</Button>
-                            <Button variant="destructive" size="sm" @click="deleteItem(item.id)">Hapus</Button>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                @click="openEditDialog(item)"
+                                >Edit</Button
+                            >
+                            <Button
+                                variant="destructive"
+                                size="sm"
+                                @click="deleteItem(item.id)"
+                                >Hapus</Button
+                            >
                         </div>
                     </div>
                 </div>
@@ -182,9 +226,13 @@ const deleteItem = (id: number) => {
             <DialogContent class="sm:max-w-[500px]">
                 <form @submit.prevent="submitForm" class="space-y-5">
                     <DialogHeader>
-                        <DialogTitle>{{ isEditing ? 'Edit Proyek' : 'Tambah Proyek' }}</DialogTitle>
+                        <DialogTitle>{{
+                            isEditing ? 'Edit Proyek' : 'Tambah Proyek'
+                        }}</DialogTitle>
                         <DialogDescription>
-                            Isi form di bawah ini untuk {{ isEditing ? 'memperbarui' : 'menambahkan' }} proyek portofolio Anda.
+                            Isi form di bawah ini untuk
+                            {{ isEditing ? 'memperbarui' : 'menambahkan' }}
+                            proyek portofolio Anda.
                         </DialogDescription>
                     </DialogHeader>
 
@@ -201,19 +249,31 @@ const deleteItem = (id: number) => {
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="thumbnail">Gambar Thumbnail <span class="text-muted-foreground font-normal">(Max 2MB)</span></Label>
+                            <Label for="thumbnail"
+                                >Gambar Thumbnail
+                                <span class="font-normal text-muted-foreground"
+                                    >(Max 2MB)</span
+                                ></Label
+                            >
                             <Input
                                 id="thumbnail"
                                 type="file"
                                 @change="handleFileChange"
                                 accept="image/*"
                             />
-                            <p class="text-xs text-muted-foreground">Kosongkan jika tidak ingin mengubah thumbnail.</p>
+                            <p class="text-xs text-muted-foreground">
+                                Kosongkan jika tidak ingin mengubah thumbnail.
+                            </p>
                             <InputError :message="form.errors.thumbnail" />
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="deskripsi_singkat">Deskripsi Singkat <span class="text-muted-foreground font-normal">(Max 255 karakter)</span></Label>
+                            <Label for="deskripsi_singkat"
+                                >Deskripsi Singkat
+                                <span class="font-normal text-muted-foreground"
+                                    >(Max 255 karakter)</span
+                                ></Label
+                            >
                             <Input
                                 id="deskripsi_singkat"
                                 v-model="form.deskripsi_singkat"
@@ -221,22 +281,33 @@ const deleteItem = (id: number) => {
                                 maxlength="255"
                                 placeholder="Tulis ringkasan 1-2 kalimat..."
                             />
-                            <InputError :message="form.errors.deskripsi_singkat" />
+                            <InputError
+                                :message="form.errors.deskripsi_singkat"
+                            />
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="deskripsi_lengkap">Detail Lengkap Proyek</Label>
+                            <Label for="deskripsi_lengkap"
+                                >Detail Lengkap Proyek</Label
+                            >
                             <Textarea
                                 id="deskripsi_lengkap"
                                 v-model="form.deskripsi_lengkap"
                                 placeholder="Tuliskan latar belakang, fitur, dan teknologi yang digunakan..."
                                 class="min-h-[120px]"
                             />
-                            <InputError :message="form.errors.deskripsi_lengkap" />
+                            <InputError
+                                :message="form.errors.deskripsi_lengkap"
+                            />
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="tools">Tools / Teknologi <span class="text-muted-foreground font-normal">(Pisahkan dengan koma)</span></Label>
+                            <Label for="tools"
+                                >Tools / Teknologi
+                                <span class="font-normal text-muted-foreground"
+                                    >(Pisahkan dengan koma)</span
+                                ></Label
+                            >
                             <Input
                                 id="tools"
                                 v-model="form.tools"
@@ -246,7 +317,9 @@ const deleteItem = (id: number) => {
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="link_eksternal">Tautan Eksternal (GitHub/Demo)</Label>
+                            <Label for="link_eksternal"
+                                >Tautan Eksternal (GitHub/Demo)</Label
+                            >
                             <Input
                                 id="link_eksternal"
                                 v-model="form.link_eksternal"
@@ -257,8 +330,15 @@ const deleteItem = (id: number) => {
                     </div>
 
                     <DialogFooter class="pt-2">
-                        <Button type="button" variant="outline" @click="isDialogOpen = false">Batal</Button>
-                        <Button type="submit" :disabled="form.processing">Simpan</Button>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            @click="isDialogOpen = false"
+                            >Batal</Button
+                        >
+                        <Button type="submit" :disabled="form.processing"
+                            >Simpan</Button
+                        >
                     </DialogFooter>
                 </form>
             </DialogContent>

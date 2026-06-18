@@ -7,7 +7,7 @@ import {
     Briefcase,
     FolderGit2,
     Share2,
-    Code2
+    Code2,
 } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavMain from '@/components/NavMain.vue';
