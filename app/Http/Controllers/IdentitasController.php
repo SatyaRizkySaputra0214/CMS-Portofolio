@@ -43,7 +43,7 @@ class IdentitasController extends Controller
             if ($identitas->foto_profil) {
                 Storage::disk('public')->delete($identitas->foto_profil);
             }
-            $identitas->foto_profil = $request->file('foto_profil')->store('identitas', 'public');
+            $identitas->foto_profil = $request->file('foto_profil')->store('identitas', 'public') ?: null;
         }
 
         if ($request->hasFile('cv_file')) {
@@ -51,7 +51,7 @@ class IdentitasController extends Controller
             if ($identitas->cv_file) {
                 Storage::disk('public')->delete($identitas->cv_file);
             }
-            $identitas->cv_file = $request->file('cv_file')->store('cv_files', 'public');
+            $identitas->cv_file = $request->file('cv_file')->store('cv_files', 'public') ?: null;
         }
 
         $identitas->save();

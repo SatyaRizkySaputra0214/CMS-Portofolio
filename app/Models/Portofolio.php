@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Portofolio extends Model
 {
+    /** @use HasFactory<\Illuminate\Database\Eloquent\Factories\Factory> */
     use HasFactory;
 
     protected $table = 'portofolio';
