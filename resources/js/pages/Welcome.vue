@@ -199,10 +199,6 @@ onUnmounted(() => {
                             class="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-blue-600/40 to-teal-500/40 opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100"
                         ></div>
                     </div>
-                    <span
-                        class="font-heading text-lg font-bold tracking-tight text-[#0F172A] dark:text-white"
-                        >Portofolio.</span
-                    >
                 </div>
 
                 <div class="flex items-center gap-2 sm:gap-4">
