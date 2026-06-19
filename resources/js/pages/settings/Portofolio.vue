@@ -311,7 +311,7 @@ const deleteItem = (id: number) => {
                             <Input
                                 id="tools"
                                 v-model="form.tools"
-                                placeholder="Vue.js, Laravel, Tailwind CSS"
+                                placeholder="Vue.js, React, Tailwind CSS"
                             />
                             <InputError :message="form.errors.tools" />
                         </div>

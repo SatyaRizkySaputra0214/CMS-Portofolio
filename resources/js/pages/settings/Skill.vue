@@ -264,7 +264,7 @@ const toggleStatus = (item: SkillItem) => {
                                 id="nama"
                                 v-model="form.nama"
                                 required
-                                placeholder="Contoh: HTML, CSS, JavaScript, Laravel"
+                                placeholder="Contoh: HTML, CSS, JavaScript, TypeScript"
                             />
                             <InputError :message="form.errors.nama" />
                         </div>
