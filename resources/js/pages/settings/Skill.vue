@@ -56,6 +56,7 @@ const form = useForm({
     gambar: null as File | null,
     urutan: 0,
     status: true,
+    _method: 'POST',
 });
 
 const imagePreviewUrl = computed(() => {
@@ -69,6 +70,7 @@ const openAddDialog = () => {
     previewUrl.value = null;
     form.reset();
     form.clearErrors();
+    form._method = 'POST';
     isDialogOpen.value = true;
 };
 
@@ -81,6 +83,7 @@ const openEditDialog = (item: SkillItem) => {
     form.urutan = item.urutan;
     form.status = item.status;
     form.gambar = null;
+    form._method = 'PUT';
     isDialogOpen.value = true;
 };
 
