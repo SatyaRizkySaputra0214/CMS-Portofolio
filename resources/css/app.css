@@ -316,7 +316,7 @@
             black 95%,
             transparent 100%
         );
-        padding: 1rem 0;
+        padding: 1rem 0 2.5rem 0;
     }
 
     .skills-track {
@@ -407,20 +407,24 @@
 
     .skills-tooltip {
         position: absolute;
-        bottom: -28px;
+        bottom: -32px;
         left: 50%;
         transform: translateX(-50%) translateY(4px);
-        white-space: nowrap;
-        padding: 3px 10px;
+        width: max-content;
+        max-width: 220px;
+        padding: 4px 12px;
         border-radius: 6px;
         font-size: 11px;
         font-weight: 600;
+        line-height: 1.4;
+        text-align: center;
         background: #1e293b;
         color: white;
+        word-wrap: break-word;
         opacity: 0;
         pointer-events: none;
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 10;
+        z-index: 50;
     }
 
     .dark .skills-tooltip {
@@ -474,8 +478,9 @@
         }
         .skills-tooltip {
             font-size: 10px;
-            padding: 2px 8px;
-            bottom: -24px;
+            padding: 3px 10px;
+            bottom: -28px;
+            max-width: 180px;
         }
     }
 
