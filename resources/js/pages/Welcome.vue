@@ -912,15 +912,31 @@ onUnmounted(() => {
         </section>
 
         <!-- ==================== PROJECTS SECTION ==================== -->
-        <section id="projects" class="relative py-20 sm:py-28">
+        <section id="projects" class="relative py-16 sm:py-20">
+            <!-- Background gradient -->
             <div
                 class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/20 to-transparent dark:via-blue-950/5"
             ></div>
 
+            <!-- Decorative grid pattern -->
+            <div
+                class="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.02)_1px,transparent_1px),linear-gradient(to_right,rgba(37,99,235,0.02)_1px,transparent_1px)] bg-[size:48px_48px] dark:bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(59,130,246,0.03)_1px,transparent_1px)]"
+            ></div>
+
+            <!-- Decorative glow orbs -->
+            <div class="pointer-events-none absolute inset-0 overflow-hidden">
+                <div
+                    class="absolute -top-24 -right-24 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-blue-500/5 to-transparent blur-3xl dark:from-blue-500/10"
+                ></div>
+                <div
+                    class="absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-teal-500/5 to-transparent blur-3xl dark:from-teal-500/10"
+                ></div>
+            </div>
+
             <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <!-- Section header -->
                 <div
-                    class="section-reveal mx-auto max-w-2xl space-y-4 text-center"
+                    class="section-reveal mx-auto max-w-2xl text-center"
                 >
                     <div
                         class="inline-flex items-center gap-2 rounded-full bg-blue-100/80 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
@@ -929,12 +945,15 @@ onUnmounted(() => {
                         <span>Portofolio</span>
                     </div>
                     <h2
-                        class="font-heading text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl dark:text-white"
+                        class="mt-4 font-heading text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl dark:text-white"
                     >
                         Galeri Portofolio
                     </h2>
+                    <div
+                        class="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500/40 to-teal-500/40 dark:from-blue-400/30 dark:to-teal-400/30"
+                    ></div>
                     <p
-                        class="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400"
+                        class="mt-4 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400"
                     >
                         Kumpulan proyek inovatif dan solusi digital yang telah
                         saya buat.
@@ -942,7 +961,7 @@ onUnmounted(() => {
                 </div>
 
                 <div
-                    class="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                    class="mx-auto mt-10 grid max-w-5xl gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3"
                 >
                     <div
                         v-if="portofolio.length === 0"
